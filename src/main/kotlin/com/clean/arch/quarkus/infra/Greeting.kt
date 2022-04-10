@@ -1,4 +1,4 @@
-package org.acme
+package com.clean.arch.quarkus.infra
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

@@ -1,4 +1,4 @@
-package org.acme
+package com.clean.arch.quarkus.infra
 
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named

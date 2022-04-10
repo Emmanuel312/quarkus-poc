@@ -23,7 +23,9 @@ dependencies {
     implementation("io.quarkus:quarkus-config-yaml")
     implementation("io.quarkus:quarkus-smallrye-health")
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
-//    implementation("io.quarkus:quarkus-spring-di")
+    implementation("io.quarkus:quarkus-smallrye-fault-tolerance")
+    implementation("io.quarkus:quarkus-smallrye-reactive-messaging-kafka")
+
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }

@@ -1,3 +1,21 @@
 api:
   greeting:
     message: Hellos
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
+mp:
+  messaging:
+#    incoming:
+#      source-kafka-topic:
+#        connector: smallrye-kafka
+#        topic: source-kafka-topic
+#        value:
+#          deserializer: org.apache.kafka.common.serialization.StringSerializer
+    outgoing:
+      sink-kafka-topic:
+        connector: smallrye-kafka
+        topic: sink-kafka-topic
+        value:
+          serializer: io.quarkus.kafka.client.serialization.ObjectMapperSerializer

@@ -1,4 +1,4 @@
-package org.acme.health
+package com.clean.arch.quarkus.infra.health
 
 import org.eclipse.microprofile.health.HealthCheck
 import org.eclipse.microprofile.health.HealthCheckResponse

@@ -1,12 +1,11 @@
 package com.clean.arch.quarkus.infra.kafka
 
 import com.clean.arch.quarkus.infra.Greeting
-import io.smallrye.mutiny.coroutines.awaitSuspending
-import io.smallrye.mutiny.subscription.MultiEmitter
+import io.smallrye.mutiny.Multi
+import io.smallrye.mutiny.Uni
 import io.smallrye.reactive.messaging.MutinyEmitter
 import io.smallrye.reactive.messaging.kafka.Record
 import org.eclipse.microprofile.reactive.messaging.Channel
-import org.eclipse.microprofile.reactive.messaging.Emitter
 import java.util.*
 import javax.enterprise.context.ApplicationScoped
 
@@ -16,7 +15,17 @@ class DummyKafkaProducer(
     private val emitter: MutinyEmitter<Record<String, Greeting>>
 ) {
 
-    suspend fun publish(greeting: Greeting) {
-        emitter.send(Record.of(UUID.randomUUID().toString(), greeting)).awaitSuspending()
+    fun publish(greeting: Greeting) {
+        emitter
+            .send(Record.of(UUID.randomUUID().toString(), greeting))
+            .catch { println(it.message) }
     }
+}
+
+fun <T> Uni<T>.catch(handler: (message: Throwable) -> Unit) {
+    this.subscribe().with({}) { failure -> handler(failure) }
+}
+
+fun <T> Multi<T>.catch(handler: (message: Throwable) -> Unit) {
+    this.subscribe().with({}) { failure -> handler(failure) }
 }
